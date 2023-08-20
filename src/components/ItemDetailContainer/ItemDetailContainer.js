@@ -1,21 +1,34 @@
 import '../../App.css'
 import { useState, useEffect } from 'react'
-import {getProductById} from '../../asyncMock'
+//import {getProductById} from '../../asyncMock'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom'
 
+import { gerDoc, doc }  from 'firebase, firestore'
+import { db } from '../../services/firebase/firebaseConfig'
+
 const ItemDetailContainer = () => {
     const[product, setProduct] = useState(null)
+    const[loading, setLoading] = useState(null)
 
     const {itemId} = useParams()
 
     useEffect(() => {
-        getProductById(itemId)
+        setLoading(true)
+
+        const docRef = doc(db, 'products', itemId)
+
+        getDoc(docRef)
             .then(response => {
-                setProduct(response)
+                const data = response.data()
+                const productsAdapted = {id: response.id, ...data}
+                serProduct(productsAdapted)
             })
             .catch(error => {
-                console.error(error)
+                console.log(error)
+            })
+            .finally(() => {
+                setLoading(false)
             })
     },[itemId])
 
@@ -25,6 +38,5 @@ const ItemDetailContainer = () => {
         </div>
     )
 }
-
 
 export default ItemDetailContainer
