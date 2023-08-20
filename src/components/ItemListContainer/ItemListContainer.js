@@ -1,6 +1,5 @@
 import '../../App.css'
 import { useState, useEffect } from "react"
-//import { getProducts, getProductsByCategory } from '../../asyncMock'
 import ItemList from '../ItemList/ItemList'
 import {useParams} from 'react-router-dom'
 
@@ -24,7 +23,7 @@ const ItemListContainer = ({ greeting }) =>{
             getDocs(collectionRef)
                 .then(response => {
                     const productsAdapted = response.docs.map(doc => {
-                        const data = dos.data()
+                        const data = doc.data()
                         return {id: doc.id, ...data}
                     })
                     setProducts(productsAdapted)
@@ -37,18 +36,6 @@ const ItemListContainer = ({ greeting }) =>{
                 })
     
     }, [categoryId])
-
-    //     const asyncFunc = categoryId ? getProductsByCategory : getProducts
-
-    //     //getProducts()
-    //     asyncFunc(categoryId)
-    //     .then(response =>{
-    //         setProducts(response)
-    //     })
-    //     .catch(error => {
-    //         console.error(error)
-    //     })
-    // }, [categoryId])
 
     return (
         <div className="greeting">

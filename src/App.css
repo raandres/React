@@ -167,24 +167,21 @@ code {
 
 
 
-.custom-navbar {
+.custom-navbar .ActiveOption {
+  background-color: #948d4c; /* Cambia el color de fondo de la opción activa */
+  color: #fff; /* Cambia el color del texto de la opción activa */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
-}
-
-.custom-navbar .nav-link {
-  margin-left: 15px;
-  color: white;
-  text-decoration: none;
-}
-
-.custom-navbar .nav-link.active {
   font-weight: bold;
 }
 
-/* Asegúrate de que el CardWidget esté en línea con los enlaces */
-.custom-navbar .card-widget {
-  margin-left: auto;
+.custom-navbar .Option{
+  
+  color: white; /* Cambia el color del texto de la opción activa */
+  
+  padding: 10px;
+  height: auto;
+  margin: 0px 20px;  
+  font-weight: bold;
 }

@@ -1,11 +1,10 @@
 import '../../App.css'
 import { useState, useEffect } from 'react'
-//import {getProductById} from '../../asyncMock'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom'
 
-import { gerDoc, doc }  from 'firebase, firestore'
-import { db } from '../../services/firebase/firebaseConfig'
+import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../../services/firebaseConfig'
 
 const ItemDetailContainer = () => {
     const[product, setProduct] = useState(null)
@@ -22,7 +21,7 @@ const ItemDetailContainer = () => {
             .then(response => {
                 const data = response.data()
                 const productsAdapted = {id: response.id, ...data}
-                serProduct(productsAdapted)
+                setProduct(productsAdapted)
             })
             .catch(error => {
                 console.log(error)
